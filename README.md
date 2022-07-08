@@ -1,1 +1,1 @@
-# VUE Exercise.
+# Vue2 Exercise.
