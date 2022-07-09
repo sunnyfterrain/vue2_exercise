@@ -1,24 +1,25 @@
 <template>
   <div>
-    <div v-for="(item, idx) in ask" :key="idx">{{ item.title }}</div>
+    <div v-for="(item, idx) in fetchedAsk" :key="idx">{{ item.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchAskList } from '../api/index';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      ask: [],
-    };
+  computed: {
+    ...mapGetters(['fetchedAsk']),
+    // ...mapGetters({
+    //   askItems: 'fetchedAsk',
+    // }),
   },
-
-  // 컴포넌트가 생성되자 마자 생기는 훅
+  /* 방법1 */
+  // computed: {
+  //   ...mapState({ ask: (state) => state.ask }),
+  // },
   created() {
-    fetchAskList()
-      .then((res) => (this.ask = res.data))
-      .catch((err) => console.log(err));
+    this.$store.dispatch('FETCH_ASK');
   },
 };
 </script>
