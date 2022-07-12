@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div v-for="(item, idx) in fetchedAsk" :key="idx">{{ item.title }}</div>
+    <p v-for="(item, idx) in fetchedAsk" :key="idx">
+      <a :href="item.url">{{ item.title }}</a>
+      <small>{{ item.time_ago }} by {{ item.user }}</small>
+    </p>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   computed: {
